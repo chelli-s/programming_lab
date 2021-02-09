@@ -14,23 +14,39 @@ class CSVTimeSeriesFile:
         output = []
         
         try:
+            
             my_file = open(self.name, 'r') #apro il file con il nome scelto dall'utente 
+            
+            my_file = open(self.name, 'r')#apro il file con il nome scelto dall'utente 
+            
         except:
-            raise ExamException('impossibile aprire il file')
+            raise ExamException('imposibile aprire il file')
             
 
         for line in my_file:
+            
             elements = line.split(',') #per ogni linea nell mio file vado a splittare in n elementi quando incontro la virgola
+            
+            elements = line.split(',')#er ogni linea nell mio file vado a splittare in n elementi quando incontro la virgola
+            
             
 
             if len(elements)>=2:
                 if elements[0] != 'epoch':
                         
+                        
                     timestamp  = elements[0] #salvo le timestamp in una variabile
                     value = elements[1] #le temperature nell'altra
                     
                     try:
-                        timestamp = int(timestamp) #vado a convertire le timestamp in int
+                        timestamp = int(timetamp) #vado a convertire le timestamp in int
+                        
+                    timestamp  = elements[0]#salvo le timestamp in una variabile
+                    value = elements[1]#le temperature nell'altra
+                    
+                    try:
+                        timestamp = int(timestamp)#vado a convertire le timestamp in int
+                        
                     except:
                         raise ExamException('valore non numerico')
                     
@@ -39,11 +55,18 @@ class CSVTimeSeriesFile:
                         raise ExamException('valore negativo non accettato')
 
                     try:
+                        
                         value = float(value) #e le temperature in float
                     except:
                         raise ExamException('valore non numerico')
                      
                     values = [timestamp,value] #salvo le variabili in un vettore
+                    
+                        value = float(value)#e le temperature in float
+                    except:
+                        raise ExamException('valore non numerico')
+                     
+                    values = [timestamp,value]#salvo le variabili in un vettore
                     
                     output.append(values) #salvo questo vettore in un altro vettore in modo da creare un array bidimensionale
             else:
@@ -72,6 +95,8 @@ def daily_stats(self):
         if i == 0:#se siamo al primo giro mi salvo a priori il valore nel vettore data 
             data.append(self[i][1])
         if epoch != 0:
+    if len(output)<28:
+        raise ExamException('Mancano delle giornate')
             for j in range(i+1,len(self)):
                 timestamp = self[j][0]
                 condizione = day_start_epoch + 86400
