@@ -17,7 +17,7 @@ class CSVTimeSeriesFile:
             
             my_file = open(self.name, 'r') #apro il file con il nome scelto dall'utente 
             
-            my_file = open(self.name, 'r')#apro il file con il nome scelto dall'utente 
+            my_file = open(self.name, 'r') #apro il file con il nome scelto dall'utente 
             
         except:
             raise ExamException('imposibile aprire il file')
@@ -27,7 +27,6 @@ class CSVTimeSeriesFile:
             
             elements = line.split(',') #per ogni linea nell mio file vado a splittare in n elementi quando incontro la virgola
             
-            elements = line.split(',')#er ogni linea nell mio file vado a splittare in n elementi quando incontro la virgola
             
             
 
@@ -39,14 +38,7 @@ class CSVTimeSeriesFile:
                     value = elements[1] #le temperature nell'altra
                     
                     try:
-                        timestamp = int(timetamp) #vado a convertire le timestamp in int
-                        
-                    timestamp  = elements[0]#salvo le timestamp in una variabile
-                    value = elements[1]#le temperature nell'altra
-                    
-                    try:
-                        timestamp = int(timestamp)#vado a convertire le timestamp in int
-                        
+                        timestamp = int(timestamp) #vado a convertire le timestamp in int
                     except:
                         raise ExamException('valore non numerico')
                     
@@ -62,11 +54,6 @@ class CSVTimeSeriesFile:
                      
                     values = [timestamp,value] #salvo le variabili in un vettore
                     
-                        value = float(value)#e le temperature in float
-                    except:
-                        raise ExamException('valore non numerico')
-                     
-                    values = [timestamp,value]#salvo le variabili in un vettore
                     
                     output.append(values) #salvo questo vettore in un altro vettore in modo da creare un array bidimensionale
             else:
@@ -75,8 +62,9 @@ class CSVTimeSeriesFile:
         for i in range(0, len(output)-1):
             if output[i][0]>=output[i+1][0]:
                 raise ExamException('Le date sono ordinate, è stato rivelato un errore di ordine')
+
         my_file.close()
-        return output#ritorno il vettore finale
+        return output #ritorno il vettore finale
         
 
 def daily_stats(self):
@@ -84,26 +72,24 @@ def daily_stats(self):
     if not isinstance(self,list):
         raise ExamException('L elemento inserito non è una lista')
 
-    values = []#values è il vettore in cui salvo i valori giornalieri
-    output = []#output serve per salvare le statistiche giornaliere
+    values = [] #values è il vettore in cui salvo i valori giornalieri
+    output = [] #output serve per salvare le statistiche giornaliere
         
     for i in range(0,len(self)-1):
         
-        epoch = self[i][0]#salvo in una variabile 
-        day_start_epoch = epoch - (epoch % 86400)#salvo in una variabile  l’inizio di un giorno dato un timestamp epoch
-        data = []#inizializzo il vettore data, qui salvo tutte le temperature appartenenti allo stesso giorno
-        if i == 0:#se siamo al primo giro mi salvo a priori il valore nel vettore data 
+        epoch = self[i][0] #salvo in una variabile 
+        day_start_epoch = epoch - (epoch % 86400) #salvo in una variabile  l’inizio di un giorno dato un timestamp epoch
+        data = [] #inizializzo il vettore data, qui salvo tutte le temperature appartenenti allo stesso giorno
+        if i == 0: #se siamo al primo giro mi salvo a priori il valore nel vettore data 
             data.append(self[i][1])
         if epoch != 0:
-    if len(output)<28:
-        raise ExamException('Mancano delle giornate')
             for j in range(i+1,len(self)):
-                timestamp = self[j][0]
-                condizione = day_start_epoch + 86400
-                if timestamp < condizione :#se siamo nello stesso giorno
-                    data.append(self[j][1])#aggiungo all'array data
-                    self[j][0] = 0#e assegno il valore 0 alla data
-        
+                    timestamp = self[j][0]
+                    condizione = day_start_epoch + 86400
+                    if timestamp < condizione : #se siamo nello stesso giorno
+                        data.append(self[j][1]) #aggiungo all'array data
+                        self[j][0] = 0 #e assegno il valore 0 alla data
+                
             values.append(data)
     
     for i in range(0,len(values)):
@@ -122,7 +108,7 @@ def daily_stats(self):
         statistiche = [valore_minimo,valore_massimo,valore_medio]
         output.append(statistiche)
 
-    return  values
+    return  output
 
 time_series_file = CSVTimeSeriesFile(name='data.csv')
 
