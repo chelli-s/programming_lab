@@ -23,6 +23,7 @@ class CSVTimeSeriesFile:
             
             elements = line.split(',') #per ogni linea nell mio file vado a splittare in 2 elementi quando incontro la virgola
             if len(elements) == 2:
+
                 if elements[0] != 'epoch':
                         
                     timestamp  = elements[0] #salvo le timestamp in una variabile
