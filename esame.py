@@ -1,6 +1,6 @@
 class ExamException(Exception):
 
-        pass
+    pass
 
 class CSVTimeSeriesFile:
 
@@ -14,11 +14,7 @@ class CSVTimeSeriesFile:
         output = []
         
         try:
-            
             my_file = open(self.name, 'r') #apro il file con il nome scelto dall'utente 
-            
-            my_file = open(self.name, 'r') #apro il file con il nome scelto dall'utente 
-            
         except:
             raise ExamException('imposibile aprire il file')
             
@@ -26,13 +22,8 @@ class CSVTimeSeriesFile:
         for line in my_file:
             
             elements = line.split(',') #per ogni linea nell mio file vado a splittare in n elementi quando incontro la virgola
-            
-            
-            
-
             if len(elements)>=2:
                 if elements[0] != 'epoch':
-                        
                         
                     timestamp  = elements[0] #salvo le timestamp in una variabile
                     value = elements[1] #le temperature nell'altra
@@ -42,12 +33,9 @@ class CSVTimeSeriesFile:
                     except:
                         raise ExamException('valore non numerico')
                     
-                    
                     if timestamp<0:
                         raise ExamException('valore negativo non accettato')
-
                     try:
-                        
                         value = float(value) #e le temperature in float
                     except:
                         raise ExamException('valore non numerico')
@@ -55,7 +43,7 @@ class CSVTimeSeriesFile:
                     values = [timestamp,value] #salvo le variabili in un vettore
                     
                     
-                    output.append(values) #salvo questo vettore in un altro vettore in modo da creare un array bidimensionale
+                    output.append(values) #salvo questo vettore in un altro vettore in modo da creare un array annidato
             else:
                 print('\nin questa linea mancano elementi\n')
                 
