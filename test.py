@@ -1,5 +1,5 @@
 
-from esame import Diff, ExamException
+from esame1 import Diff, ExamException
 
 import unittest
 

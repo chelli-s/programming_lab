@@ -1,5 +1,5 @@
 
-from esame import MovingAverage, ExamException
+from esame1 import MovingAverage, ExamException
 
 import unittest
 
