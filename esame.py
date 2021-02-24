@@ -88,7 +88,7 @@ def hourly_trend_changes(self):
                 
             values.append(data)
     
-    for i in range(0,len(values)):#in qusto ciclo calcolo se la funzione è crescente, decrescente o monotona
+    for i in range(0,len(values)):#in qusto ciclo calcolo se la funzione è crescente, decrescente o costante
         if len(values[i])<1:#controllo che ci sia almeno un valore per ora
             raise ExamException('Ogni giorno ha almeno un dato')
         statistiche = []
